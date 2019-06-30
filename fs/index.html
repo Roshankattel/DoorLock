@@ -1,0 +1,537 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Copyright 2014 Owen Versteeg; MIT licensed */
+    body,
+    textarea,
+    input,
+    select {
+      background: 0;
+      border-radius: 0;
+      font: 16px sans-serif;
+      margin: 0
+    }
+
+    .smooth {
+      transition: all .2s
+    }
+
+    .btn,
+    .nav a {
+      text-decoration: none
+    }
+
+    .container {
+      margin: 0 20px;
+      width: auto
+    }
+
+    label>* {
+      display: inline
+    }
+
+    form>* {
+      display: block;
+      margin-bottom: 10px
+    }
+
+    .btn {
+      background: #999;
+      border-radius: 6px;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      margin: 2px 0;
+      padding: 12px 30px 14px
+    }
+
+    .btn:hover {
+      background: #888
+    }
+
+    .btn:active,
+    .btn:focus {
+      background: #777
+    }
+
+    .btn-a {
+      background: #0ae
+    }
+
+    .btn-a:hover {
+      background: #09d
+    }
+
+    .btn-a:active,
+    .btn-a:focus {
+      background: #08b
+    }
+
+    .btn-b {
+      background: #3c5
+    }
+
+    .btn-b:hover {
+      background: #2b4
+    }
+
+    .btn-b:active,
+    .btn-b:focus {
+      background: #2a4
+    }
+
+    .btn-c {
+      background: #d33
+    }
+
+    .btn-c:hover {
+      background: #c22
+    }
+
+    .btn-c:active,
+    .btn-c:focus {
+      background: #b22
+    }
+
+    .btn-sm {
+      border-radius: 4px;
+      padding: 10px 14px 11px
+    }
+
+    .row {
+      margin: 1% 0;
+      overflow: auto
+    }
+
+    .col {
+      float: left
+    }
+
+    .table,
+    .c12 {
+      width: 100%
+    }
+
+    .c11 {
+      width: 91.66%
+    }
+
+    .c10 {
+      width: 83.33%
+    }
+
+    .c9 {
+      width: 75%
+    }
+
+    .c8 {
+      width: 66.66%
+    }
+
+    .c7 {
+      width: 58.33%
+    }
+
+    .c6 {
+      width: 50%
+    }
+
+    .c5 {
+      width: 41.66%
+    }
+
+    .c4 {
+      width: 33.33%
+    }
+
+    .c3 {
+      width: 25%
+    }
+
+    .c2 {
+      width: 16.66%
+    }
+
+    .c1 {
+      width: 8.33%
+    }
+
+    h1 {
+      font-size: 3em
+    }
+
+    .btn,
+    h2 {
+      font-size: 2em
+    }
+
+    .ico {
+      font: 33px Arial Unicode MS, Lucida Sans Unicode
+    }
+
+    .addon,
+    .btn-sm,
+    .nav,
+    textarea,
+    input,
+    select {
+      outline: 0;
+      font-size: 14px
+    }
+
+    textarea,
+    input,
+    select {
+      padding: 8px;
+      border: 1px solid #ccc
+    }
+
+    textarea:focus,
+    input:focus,
+    select:focus {
+      border-color: #5ab
+    }
+
+    textarea,
+    input[type=text] {
+      -webkit-appearance: none;
+      width: 13em
+    }
+
+    .addon {
+      padding: 8px 12px;
+      box-shadow: 0 0 0 1px #ccc
+    }
+
+    .nav,
+    .nav .current,
+    .nav a:hover {
+      background: #000;
+      color: #fff
+    }
+
+    .nav {
+      height: 24px;
+      padding: 11px 0 15px
+    }
+
+    .nav a {
+      color: #aaa;
+      padding-right: 1em;
+      position: relative;
+      top: -1px
+    }
+
+    .nav .pagename {
+      font-size: 22px;
+      top: 1px
+    }
+
+    .btn.btn-close {
+      background: #000;
+      float: right;
+      font-size: 25px;
+      margin: -54px 7px;
+      display: none
+    }
+
+    @media(min-width:1310px) {
+      .container {
+        margin: auto;
+        width: 1270px
+      }
+    }
+
+    @media(max-width:870px) {
+      .row .col {
+        width: 100%
+      }
+    }
+
+    @media(max-width:500px) {
+      .btn.btn-close {
+        display: block
+      }
+
+      .nav {
+        overflow: hidden
+      }
+
+      .pagename {
+        margin-top: -11px
+      }
+
+      .nav:active,
+      .nav:focus {
+        height: auto
+      }
+
+      .nav div:before {
+        background: #000;
+        border-bottom: 10px double;
+        border-top: 3px solid;
+        content: '';
+        float: right;
+        height: 4px;
+        position: relative;
+        right: 3px;
+        top: 14px;
+        width: 20px
+      }
+
+      .nav a {
+        padding: .5em 0;
+        display: block;
+        width: 50%
+      }
+    }
+
+    .table th,
+    .table td {
+      padding: .5em;
+      text-align: left
+    }
+
+    .table tbody>:nth-child(2n-1) {
+      background: #ddd
+    }
+
+    .msg {
+      padding: 1.5em;
+      background: #def;
+      border-left: 5px solid #59d
+    }
+
+    .hero {
+      background: #eee;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 1em;
+    }
+
+    .hero h1 {
+      margin-top: 0;
+      margin-bottom: 0.3em;
+    }
+
+    .c4 {
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .c4 h3 {
+      margin-top: 0;
+    }
+
+    .c4 a {
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .form-control {
+      margin: 0.5em 0;
+    }
+
+    .form label {
+      min-width: 8em;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #3498DB;
+      color: white;
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropbtn:hover,
+    .dropbtn:focus {
+      background-color: #2980B9;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      max-height: 300px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 8px 8px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .dropdown a:hover {
+      background-color: #ddd;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+  <script src="zepto.min.js"></script>
+
+</head>
+
+<body onload="scanWifi();">
+  <nav class="nav" tabindex="-1" onclick="this.focus()">
+    <div class="container">
+      <a class="pagename current">Setup Device</a>
+    </div>
+  </nav>
+
+  <div class="row form">
+    <div class="col c4">
+      <div class="form-control">
+      <div class="form-control">
+        <label for="ssid">WiFi Network:</label>
+        <input type="text" class="smooth" id="ssid" name="ssid" placeholder="Type WiFi network...">
+        <div class="dropdown">
+          <button onclick="listWifi()" class="dropbtn">Wifi</button>
+          <div id="dynamic-list" class="dropdown-content">
+          </div>
+        </div>
+      </div>
+      <div class="form-control">
+        <label for="pass">WiFi Password:</label>
+        <input type="password" class="smooth" id="pass" name="pass" placeholder="Type WiFi password...">
+      </div>
+      <div class="form-control">
+        <label for="ontime">Initial lock status:</label>
+        <input type="text" class="smooth" id="LS" name="LS" placeholder="Type initail lock status...">
+      </div>
+      <div class="form-control">
+        <label for="retry">Pulse Duration</label>
+        <input type="number" class="smooth" id="PD" name="PD" placeholder="Pulse Duration in millisecs...">
+      </div>
+      <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="scan">Scan WiFi</button></div>
+      <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="save">Save settings</button></div>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function listWifi() {
+      document.getElementById("dynamic-list").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+    function scanWifi() {
+      console.log("Scan WiFi");
+      $.ajax({
+        url: '/rpc/Wifi.Scan',
+        data: JSON.stringify({ "key": "app" }),
+        type: 'POST',
+        success: function (data) {
+          console.log("Wifi ssid");
+          console.log(data);
+          data.forEach(function (item, index, array) {
+            // Your existing code unmodified...
+            var iDiv = document.getElementById('dynamic-list');
+
+            // Now create and append to iDiv
+            var innerDiv = document.createElement('a');
+            innerDiv.className = item.ssid;
+            innerDiv.innerHTML = item.ssid + " : " + item.rssi;
+            innerDiv.addEventListener("click", function () {
+              document.getElementById('ssid').value = item.ssid;
+            });
+            // The variable iDiv is still good... Just append to it.
+            iDiv.appendChild(innerDiv);
+          })
+        }
+      }
+      )
+    }
+
+    function removeItem() {
+      console.log("Clear list")
+      var wifiList = document.getElementById("dynamic-list");
+      while (wifiList.firstChild) {
+        wifiList.removeChild(wifiList.firstChild);
+      }
+    }
+
+
+    $.ajax({
+      url: '/rpc/Config.Get',
+      data: JSON.stringify({ "key": "hardware" }),
+      type: 'POST',
+      success: function (data) {
+        console.log("Get Hardware")
+        console.log(data)
+        $('#LS').val(data.relayStat);
+        $('#PD').val(data.pulseTm);
+      },
+    });
+
+
+    $('#save').on('click', function () {
+      console.log("Set config");
+      $.ajax({
+        url: '/rpc/Config.Set',
+        data: JSON.stringify({
+            config: {
+            wifi: {
+              sta: {
+                enable: true, 
+                ssid: $('#ssid').val(),
+                pass: $('#pass').val()
+              },
+              ap: { enable: true }
+            },
+            hardware: {
+                relayStat: ($('#LS').val()) == 'open' ? true : false,
+                pulseTm: parseInt($('#PD').val())
+         },
+          }
+        }),
+        type: 'POST',
+        success: function (data) {
+          console.log("Save config");
+          $.ajax({ url: '/rpc/Config.Save', type: 'POST', data: JSON.stringify({ "reboot": true }) });
+        },
+      })
+    });
+
+    $('#scan').on('click', function () {
+      removeItem();
+      scanWifi();
+    });
+  </script>
+
+</body>
+
+</html>
