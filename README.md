@@ -3,5 +3,5 @@
 ## Overview
 
 This is an empty app, serves as a skeleton for building Mongoose OS
-apps from scratch.
+apps from scratch.Add Blynk auth before using.
 
