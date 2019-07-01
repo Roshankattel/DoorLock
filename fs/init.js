@@ -8,7 +8,7 @@ load('api_blynk.js');
 load('api_rpc.js');
 load('api_dash.js');
 
-let ping = 0, reset_id, led ;
+let ping = 0, reset_id,led;
 let relayPin = Cfg.get('hardware.relayPin');
 let relayStat = Cfg.get('hardware.relayStat'); //initial status of relay
 
@@ -26,10 +26,12 @@ if (relayStat === true) {
 Blynk.setHandler(function (conn, cmd, pin, val, id) {
   if (cmd === 'vr') {
     ping = !ping;
+    led = 255 - led;
     led = ping;
     led = ping? 0:255;
-    Blynk.virtualWrite(conn, 1, led, id);
+    Blynk.virtualWrite(conn, 1, led, id);    
     Blynk.virtualWrite(conn, 0, ping, id);
+    
   }
   else if (cmd === 'vw' && pin === 5 && val === 1) {
     // using virtual pin 5 to turn on 

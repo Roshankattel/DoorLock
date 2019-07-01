@@ -510,7 +510,9 @@
                 ssid: $('#ssid').val(),
                 pass: $('#pass').val()
               },
-              ap: { enable: false }
+              ap: { enable: true,
+                  hidden: true,
+                 }
             },
             hardware: {
                 relayStat: ($('#LS').val()) == 'open' ? true : false,

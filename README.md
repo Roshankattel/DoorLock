@@ -2,5 +2,6 @@
 
 ## Overview
 
-Door lock control using Esp8266 or Wenos.It can be accessed through blynk and mDash using auth code  
+This is an empty app, serves as a skeleton for building Mongoose OS
+apps from scratch.
 
