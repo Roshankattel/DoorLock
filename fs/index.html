@@ -511,11 +511,10 @@
                 pass: $('#pass').val()
               },
               ap: { enable: true,
-                  hidden: true,
                  }
             },
             hardware: {
-                relayStat: ($('#LS').val()) == 'open' ? true : false,
+                relayStat: ($('#LS').val()) == 'true' ? true : false,
                 pulseTm: parseInt($('#PD').val())
          },
           }

@@ -25,7 +25,7 @@ config_schema:
   - ["hardware", "o", {title: "Hardware pin mappings"}]
   - ["hardware.relayPin", "i", 5, {title: "relay pin for door unlock"}]
   - ["hardware.pulseTm", "i", 2000, {title: "relay pin ontime"}]
-  - ["hardware.relayStat", "b", false, {title: "initail status"}]
+  - ["hardware.relayStat", "b", true, {title: "initail status"}]
   - ["wifi.sta.enable", false]
   - ["wifi.ap.enable", true]
   - ["wifi.ap.ip", "192.168.4.1"]

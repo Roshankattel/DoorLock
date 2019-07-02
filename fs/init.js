@@ -14,11 +14,11 @@ let relayStat = Cfg.get('hardware.relayStat'); //initial status of relay
 
 GPIO.setup_output(relayPin, relayStat);
 
-if (relayStat === true) {
+if (relayStat === false) {
   print('Door lock open');
   Timer.set(Cfg.get('hardware.pulseTm'), 0, function () {
     print('Door lock closed');
-    GPIO.write(relayPin, 0);
+    GPIO.write(relayPin, 1);
   }, null);
 }
 
@@ -26,7 +26,6 @@ if (relayStat === true) {
 Blynk.setHandler(function (conn, cmd, pin, val, id) {
   if (cmd === 'vr') {
     ping = !ping;
-    led = 255 - led;
     led = ping;
     led = ping? 0:255;
     Blynk.virtualWrite(conn, 1, led, id);    
@@ -36,19 +35,19 @@ Blynk.setHandler(function (conn, cmd, pin, val, id) {
   else if (cmd === 'vw' && pin === 5 && val === 1) {
     // using virtual pin 5 to turn on 
     print('Door lock open');
-    GPIO.write(relayPin, 1);
+    GPIO.write(relayPin, 0);
     Timer.set(Cfg.get('hardware.pulseTm'), 0, function () {
       print('Door lock closed');
-      GPIO.write(relayPin, 0);
+      GPIO.write(relayPin, 1);
     }, null);
   }
 }, null);
 
 RPC.addHandler('Unlock', function() {
-  GPIO.write(relayPin, 1);
+  GPIO.write(relayPin, 0);
   print('Door lock open');
   Timer.set(Cfg.get('hardware.pulseTm'), 0, function () {
   print('Door lock closed');
-  GPIO.write(relayPin, 0);
+  GPIO.write(relayPin, 1);
   }, null);
 });
