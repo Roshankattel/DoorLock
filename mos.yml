@@ -33,9 +33,9 @@ config_schema:
   - ["wifi.ap.pass", "432FACC99A"]
   - ["blynk.enable", true]
   - ["blynk.server", "blynk-cloud.com:8442"]
-  - ["blynk.auth", ""]
+  - ["blynk.auth", "2621cb65371244a2873e3762560dc0ab"]
   - ["dash.enable", true]
-  - ["dash.token", ""]
+  - ["dash.token", "kibEjPIabF2xRIzFO4dqjQ"]
   - ["provision.btn.pin", 0]
   - ["provision.btn.pull_up", true]
   - ["provision.btn.hold_ms", 5000]
@@ -80,6 +80,7 @@ libs:
   - origin: https://github.com/mongoose-os-libs/provision
   - origin: https://github.com/mongoose-os-libs/dash
   - origin: https://github.com/mongoose-os-libs/rpc-common
+  - origin: https://github.com/mongoose-os-libs/rpc-service-ota
 
 # Used by the mos tool to catch mos binaries incompatible with this file format
 manifest_version: 2017-09-29
