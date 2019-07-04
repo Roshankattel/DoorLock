@@ -27,6 +27,7 @@ function unlock() {
 
 if (relayStat === false) {
   unlock();
+  Cfg.set({ hardware: {relayStat: true } });
 }
 
 Blynk.setHandler(function (conn, cmd, pin, val, id) {

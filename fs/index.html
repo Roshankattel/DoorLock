@@ -423,6 +423,7 @@
       </div>
       <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="scan">Scan WiFi</button></div>
       <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="save">Save settings</button></div>
+      <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="initstat">Change only status</button></div>
     </div>
   </div>
   </div>
@@ -513,6 +514,27 @@
               ap: { enable: true,
                  }
             },
+            hardware: {
+                relayStat: ($('#LS').val()) == 'true' ? true : false,
+                pulseTm: parseInt($('#PD').val())
+         },
+          }
+        }),
+        type: 'POST',
+        success: function (data) {
+          console.log("Save config");
+          $.ajax({ url: '/rpc/Config.Save', type: 'POST', data: JSON.stringify({ "reboot": true }) });
+        },
+      })
+    });
+
+
+    $('#initstat').on('click', function () {
+      console.log("Change status");
+      $.ajax({
+        url: '/rpc/Config.Set',
+        data: JSON.stringify({
+            config: {
             hardware: {
                 relayStat: ($('#LS').val()) == 'true' ? true : false,
                 pulseTm: parseInt($('#PD').val())
