@@ -511,8 +511,7 @@
                 ssid: $('#ssid').val(),
                 pass: $('#pass').val()
               },
-              ap: { enable: true,
-                 }
+              ap: { enable: true}
             },
             hardware: {
                 relayStat: ($('#LS').val()) == 'true' ? true : false,
@@ -548,7 +547,7 @@
         },
       })
     });
-
+    
     $('#scan').on('click', function () {
       removeItem();
       scanWifi();

@@ -1,12 +1,11 @@
 load('api_config.js');
 load('api_timer.js');
 load('api_gpio.js');
-load('api_uart.js');
 load('api_sys.js');
-load('api_gpio.js');
 load('api_blynk.js');
 load('api_rpc.js');
 load('api_dash.js');
+load('api_events.js');
 
 let F_reset = ffi('void mgos_config_reset(int)');
 
@@ -18,7 +17,8 @@ GPIO.setup_output(relayPin, relayStat);
 
 function unlock() {
   GPIO.write(relayPin, 0);
-  print('Door lock open');
+  let time = Math.floor(Timer.now() * 1000);
+  print('Door lock open at', time);
   Timer.set(Cfg.get('hardware.pulseTm'), 0, function () {
     print('Door lock closed');
     GPIO.write(relayPin, 1);
@@ -27,7 +27,7 @@ function unlock() {
 
 if (relayStat === false) {
   unlock();
-  Cfg.set({ hardware: {relayStat: true } });
+  Cfg.set({ hardware: { relayStat: true } });
 }
 
 Blynk.setHandler(function (conn, cmd, pin, val, id) {
@@ -52,3 +52,7 @@ RPC.addHandler('Factory.reset', function () {
   Sys.reboot(0);
 });
 
+Event.addHandler(Event.CLOUD_DISCONNECTED, function (ev, evdata, ud) {
+  print("cloud Disconnected,Going to reboot!"); 
+    Sys.reboot(0);
+}, null);

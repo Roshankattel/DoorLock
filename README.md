@@ -5,3 +5,8 @@
 This is an empty app, serves as a skeleton for building Mongoose OS
 apps from scratch.
 
+GREEN - GND
+BLACK - VCC
+BLUE - D1
+
+
