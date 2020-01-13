@@ -1,6 +1,6 @@
 author: mongoose-os
 description: A Mongoose OS app skeleton
-version: 1.0
+version: 2.0
 
 libs_version: ${mos.version}
 modules_version: ${mos.version}
@@ -24,7 +24,7 @@ filesystem:
 config_schema:  
   - ["hardware", "o", {title: "Hardware pin mappings"}]
   - ["hardware.relayPin", "i", 5, {title: "relay pin for door unlock"}]
-  - ["hardware.pulseTm", "i", 2000, {title: "relay pin ontime"}]
+  - ["hardware.pulseTm", "i", 100, {title: "relay pin ontime"}]
   - ["hardware.relayStat", "b", true, {title: "initail status"}]
   - ["wifi.sta.enable", false]
   - ["wifi.ap.enable", true]
@@ -33,9 +33,9 @@ config_schema:
   - ["wifi.ap.pass", "432FACC99A"]
   - ["blynk.enable", true]
   - ["blynk.server", "blynk-cloud.com:8442"]
-  - ["blynk.auth", "2621cb65371244a2873e3762560dc0ab"]
+  - ["blynk.auth", ""]
   - ["dash.enable", true]
-  - ["dash.token", "kibEjPIabF2xRIzFO4dqjQ"]
+  - ["dash.token", ""]
   - ["provision.btn.pin", 0]
   - ["provision.btn.pull_up", true]
   - ["provision.btn.hold_ms", 5000]
@@ -44,7 +44,7 @@ config_schema:
   - ["provision.stable_state", 3]
   - ["provision.timeout",3000]
   - ["file_logger.enable", true]
-
+  - ["sys.tz_spec", "s", "UTC-5:45", {title: "Nepal Time"}]
 #  - ["my_app", "o", {title: "My app custom settings"}]
 #  - ["my_app.bool_value", "b", false, {title: "Some boolean value"}]
 #  - ["my_app.string_value", "s", "", {title: "Some string value"}]
@@ -82,6 +82,6 @@ libs:
   - origin: https://github.com/mongoose-os-libs/rpc-common
   - origin: https://github.com/mongoose-os-libs/rpc-service-ota
   - origin: https://github.com/mongoose-os-libs/file-logger
-
+  - origin: https://github.com/mongoose-os-libs/sntp
 # Used by the mos tool to catch mos binaries incompatible with this file format
 manifest_version: 2017-09-29

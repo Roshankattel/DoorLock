@@ -400,32 +400,24 @@
   <div class="row form">
     <div class="col c4">
       <div class="form-control">
-      <div class="form-control">
-        <label for="ssid">WiFi Network:</label>
-        <input type="text" class="smooth" id="ssid" name="ssid" placeholder="Type WiFi network...">
-        <div class="dropdown">
-          <button onclick="listWifi()" class="dropbtn">Wifi</button>
-          <div id="dynamic-list" class="dropdown-content">
+        <div class="form-control">
+          <label for="ssid">WiFi Network:</label>
+          <input type="text" class="smooth" id="ssid" name="ssid" placeholder="Type WiFi network...">
+          <div class="dropdown">
+            <button onclick="listWifi()" class="dropbtn">Wifi</button>
+            <div id="dynamic-list" class="dropdown-content">
+            </div>
           </div>
         </div>
+        <div class="form-control">
+          <label for="pass">WiFi Password:</label>
+          <input type="password" class="smooth" id="pass" name="pass" placeholder="Type WiFi password...">
+        </div>
+        <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="scan">Scan WiFi</button></div>
+        <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="save">Save settings</button></div>
+        <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="initstat">Door Unlock</button></div>
       </div>
-      <div class="form-control">
-        <label for="pass">WiFi Password:</label>
-        <input type="password" class="smooth" id="pass" name="pass" placeholder="Type WiFi password...">
-      </div>
-      <div class="form-control">
-        <label for="ontime">Initial lock status:</label>
-        <input type="text" class="smooth" id="LS" name="LS" placeholder="Type initail lock status...">
-      </div>
-      <div class="form-control">
-        <label for="retry">Pulse Duration</label>
-        <input type="number" class="smooth" id="PD" name="PD" placeholder="Pulse Duration in millisecs...">
-      </div>
-      <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="scan">Scan WiFi</button></div>
-      <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="save">Save settings</button></div>
-      <div class="form-control"><button href="#" class="btn btn-sm btn-c" id="initstat">Change only status</button></div>
     </div>
-  </div>
   </div>
 
   <script>
@@ -485,38 +477,20 @@
       }
     }
 
-
-    $.ajax({
-      url: '/rpc/Config.Get',
-      data: JSON.stringify({ "key": "hardware" }),
-      type: 'POST',
-      success: function (data) {
-        console.log("Get Hardware")
-        console.log(data)
-        $('#LS').val(data.relayStat);
-        $('#PD').val(data.pulseTm);
-      },
-    });
-
-
     $('#save').on('click', function () {
       console.log("Set config");
       $.ajax({
         url: '/rpc/Config.Set',
         data: JSON.stringify({
-            config: {
+          config: {
             wifi: {
               sta: {
-                enable: true, 
+                enable: true,
                 ssid: $('#ssid').val(),
                 pass: $('#pass').val()
               },
-              ap: { enable: true}
+              ap: { enable: true }
             },
-            hardware: {
-                relayStat: ($('#LS').val()) == 'true' ? true : false,
-                pulseTm: parseInt($('#PD').val())
-         },
           }
         }),
         type: 'POST',
@@ -533,11 +507,10 @@
       $.ajax({
         url: '/rpc/Config.Set',
         data: JSON.stringify({
-            config: {
+          config: {
             hardware: {
-                relayStat: ($('#LS').val()) == 'true' ? true : false,
-                pulseTm: parseInt($('#PD').val())
-         },
+              relayStat: false
+            },
           }
         }),
         type: 'POST',
@@ -547,7 +520,7 @@
         },
       })
     });
-    
+
     $('#scan').on('click', function () {
       removeItem();
       scanWifi();
